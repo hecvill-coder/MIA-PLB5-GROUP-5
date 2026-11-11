@@ -33,16 +33,16 @@ class Dog():
         self.color = myColor
         self.numberOfBones  = int(0)
 
-    def eatOneMouse(self):
+    def eatOneBone(self):
         self.numberOfBones += 1
 
     def sayHello (self):
-        print('Hello, my name is',self.name,'my color is', self.color,"and I've eaten",self.numberOfBones,"mouses today")
+        print('Hello, my name is',self.name,'my color is', self.color,"and I've eaten",self.numberOfBones,"bones today")
 
 """ Objects Dog1 and Dog2 of class Dog are being instantiated """
-dog1 = Dog('Speed','white')
-dog2 = Dog('Elliot','Red')
-dog3 = Dog('Félix','Yellow')
+dog1 = Dog('Fast','white')
+dog2 = Dog('Elisa','Red')
+dog3 = Dog('Fernando','Yellow')
 
 """ The method sayHello will be executed by the object Dog1 """
 dog1.sayHello()
@@ -51,5 +51,5 @@ dog1.sayHello()
 dog2.sayHello()
 
 dog3.sayHello()
-dog3.eatOneMouse()
+dog3.eatOneBone()
 dog3.sayHello()
