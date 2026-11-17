@@ -1,0 +1,79 @@
+--------------------------------------------------------------------
+Architecture & New Files (artefactClass.py & obstacleClass.py)
+--------------------------------------------------------------------
+
+New parent class Artefact (artefactClass.py): In the original version, Food directly managed the food object and its position.  this logic was extracted into a parent class Artefact
+
+New obstacle files (obstacleClass.py): Added the Obstacle class (inheriting from Artefact) and its subclass Fence using "fence.gif".
+
+--------------------------------------------------------------------
+foodClass.py
+--------------------------------------------------------------------
+
+Inheritance: Food now inherits from Artefact instead of being a standalone class.
+
+New food item: Added the Fish class ("blue", "fish.gif") for the penguin.
+
+--------------------------------------------------------------------
+animalClass.py
+--------------------------------------------------------------------
+
+New animal (Pinguin): Added the Pinguin class ("pinguin.gif", "blue") whose speed increases by +1 on "light blue" (water), decreases by -0.25 on "light green" (forest), and resets to 1 on all other terrain.
+
+New method obstacle_hit(): Added to the parent Animal class; it halves the speed (self.speed *= 0.5) when an obstacle is hit.
+
+Modification to Dog.adjust_speed(): In the original version, the method simply contained pass. Added if/elif conditions (+= 0 / -= 0) and an else: self.speed = 1.
+
+--------------------------------------------------------------------
+animalRaceGame.py
+--------------------------------------------------------------------
+
+New imports: Added Pinguin, Fish, and Fence.
+
+Animal positions (create_animals): Changed from 3 animals at Y-coordinates [67, 0, -67] to 4 animals (monkey, dog, turtle_racer, pinguin) at Y-coordinates [75, 25, -25, -75].
+
+Food items (create_food_items): Added Fish to food_classes and updated the random Y-coordinates to [75, 25, -25, -75].
+
+New method create_obstacle_items(self, num_items): Generates a list of Fence instances randomly distributed across the track and across the 4 lanes [75, 25, -25, -75].
+
+--------------------------------------------------------------------
+main.py
+--------------------------------------------------------------------
+
+Execution path handling: Added import os and os.chdir(os.path.dirname(os.path.abspath(__file__))) at the beginning of initialize() to properly load the .gif files regardless of the directory from which the script is launched.
+
+Shape registration: Added turtle.register_shape() for "pinguin.gif", "fish.gif", and "fence.gif".
+
+--------------------------------------------------------------------
+Game parameters:
+--------------------------------------------------------------------
+
+Number of colored areas increased from 5 to 10.
+
+Number of food items increased from 5 to 9.
+
+Creation of 9 obstacles via obstacles = game.create_obstacle_items(9).
+
+--------------------------------------------------------------------
+Game loop (while):
+--------------------------------------------------------------------
+
+Added pinguin to the stopping condition, movement calls (pinguin.move(game.track)), debugging print statements, and final winner check (winners).
+
+Food collisions: Added the if isinstance(food, Fish) block to double pinguin's speed.
+
+Obstacle collisions: Added the nested loop for obstacle in obstacles: / for animal in [pinguin, turtle_racer, dog, monkey]: to apply animal.obstacle_hit(), hide, and remove the fence.
+
+raceTrackClass.py (vs raceTrackClass_2.py)
+
+No differences: Both files are strictly identical line for line.
+
+--------------------------------------------------------------------
+Gemini Prompt
+--------------------------------------------------------------------
+
+Pinguin: From these images (exisiting images in the project) create an image of a Pinguin
+
+Fence: From these images (exisiting images in the project) create an image of a Fence
+
+Fish: From these images (exisiting images in the project) create an image of a Fish

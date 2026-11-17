@@ -1,0 +1,55 @@
+====================================================================
+ANIMAL RACE GAME — TEST PLAN
+====================================================================
+
+[TC-01] Working Directory & Asset Loading
+- Preconditions: Game files are located in projet/, terminal is opened from a parent directory.
+- Steps: Run python projet/main.py from outside the projet/ folder.
+- Expected Result: os.chdir() sets the working directory to projet/, all .gif shapes (pinguin.gif, fish.gif, fence.gif, etc.) register without TclError, and the window opens.
+
+[TC-02] 4-Racer Setup & Alignment
+- Preconditions: Game is initialized via initialize().
+- Steps:
+  1. Observe the starting positions of all racers on the track.
+  2. Verify the number of spawned food items and obstacles.
+- Expected Result: 4 racers (Monkey, Dog, TurtleRacer, Pinguin) appear at x = -450 on Y-lanes 75, 25, -25, -75. 10 colored zones, 9 food items, and 9 fences spawn.
+
+[TC-03] Pinguin Terrain Speed Adjustment
+- Preconditions: Race is in progress; Pinguin is at default speed (1) on "white" terrain.
+- Steps:
+  1. Observe Pinguin entering a "light blue" (water) area.
+  2. Observe Pinguin entering a "light green" (forest) area.
+  3. Observe Pinguin returning to "white" terrain.
+- Expected Result:
+  1. Speed increases by +1 (to 2).
+  2. Speed decreases by -0.25.
+  3. Speed resets to 1.
+
+[TC-04] Fish Consumption (Pinguin Boost)
+- Preconditions: Fish item is spawned in Pinguin's lane (y = -75).
+- Steps: Let Pinguin move within < 10 units (X and Y) of a Fish object.
+- Expected Result: Pinguin's speed doubles (speed *= 2), the Fish sprite hides (food.hide()), and it is removed from foods.
+
+[TC-05] Food Species Exclusivity
+- Preconditions: Fish is spawned in Dog's lane (y = 25), or Banana is in Pinguin's lane (y = -75).
+- Steps: Let an animal pass directly over a food item belonging to another species.
+- Expected Result: No speed boost occurs, and the food item remains visible on the track.
+
+[TC-06] Fence Collision (obstacle_hit)
+- Preconditions: Fence obstacle is spawned in any animal's lane.
+- Steps: Let any racer (Monkey, Dog, TurtleRacer, or Pinguin) move within < 10 units of a Fence.
+- Expected Result: The colliding animal's speed is halved (speed *= 0.5), the Fence hides (obstacle.hide()), and it is removed from obstacles.
+
+[TC-07] Dog Terrain Reset Behavior
+- Preconditions: Dog hits a Fence (speed = 0.5) or eats a Bone (speed = 2) on "white" terrain.
+- Steps: Let Dog cross into a colored zone ("light blue" or "light green") and then return to "white" terrain.
+- Expected Result: Speed remains unchanged across colored zones (+= 0 / -= 0) and resets to 1 upon re-entering "white" terrain.
+
+[TC-08] Pinguin Win & Tie Condition
+- Preconditions: Race reaches x >= 450 (game.finish_line).
+- Steps:
+  1. Let Pinguin cross x = 450 alone.
+  2. Simulate Pinguin and another racer crossing x = 450 on the same frame.
+- Expected Result:
+  1. Loop terminates and displays "The winner is: Pinguin".
+  2. Loop terminates and displays "It's a tie between: ..., Pinguin".

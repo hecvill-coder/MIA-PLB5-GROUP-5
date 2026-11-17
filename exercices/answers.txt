@@ -1,0 +1,59 @@
+====================================================================
+ANSWERS - MIA - O2.3 - PBL 5b - OOP - PW Student's Guide
+====================================================================
+
+--------------------------------------------------------------------
+EXERCISE 1
+--------------------------------------------------------------------
+Q1: In OOP, what do we call the characteristics of an object?
+A1: Attributes (or member fields).
+
+Q2: In OOP, what do we call the behavior of an object?
+A2: Methods (or member subroutines).
+
+Q3: What is called the function that initializes an object?
+A3: The initializer method (__init__).
+
+--------------------------------------------------------------------
+EXERCISE 4
+--------------------------------------------------------------------
+Q1: What happens when we execute the code of example 4?
+A1: It prints the exact same sentence twice ("Hello, my name is Speed and i am 1 year(s) old."); the age stays 1.
+
+Q2: Why does this happen?
+A2: The __age attribute is private (starts with __), so Python applies name mangling (_Cat__age). Direct modification (cat1.__age = ...) fails to update the actual private attribute.
+
+Q3: It's cat1's birthday. What is the correct way to change its age? Display cat1's age after his birthday.
+A3: Use the public method birthday() and the getter getAge():
+cat1.birthday()
+print(cat1.getAge())
+
+--------------------------------------------------------------------
+EXERCISE 6
+--------------------------------------------------------------------
+Q1: Is this an aggregation or a composition relationship? (Do we kill the cats if we kill the world?)
+A1: Aggregation ("Has-A" relationship). Cat objects can exist independently of the World object.
+
+--------------------------------------------------------------------
+EXERCISE 8
+--------------------------------------------------------------------
+Q1: What is the variable t in our script?
+A1: An object (instance) of the Turtle class.
+
+Q2: How do we call a method from our object?
+A2: Using dot notation: object_name.method_name(parameters) (e.g., t.forward(100)).
+
+Q3: In the original script what are the objects related to the turtle library?
+A3: window (an instance of turtle.Screen) and t (an instance of turtle.Turtle).
+
+--------------------------------------------------------------------
+EXERCISE 16 
+--------------------------------------------------------------------
+Q1: Write your Prompt:
+A1: "Explain Python namespace packages, how they differ from regular packages with __init__.py, and give a short example."
+
+Q2: Synthesize the answer with your words:
+A2: A namespace package groups sub-packages or modules spread across different directories under one parent package name without needing an __init__.py file.
+
+Q3: Now, explain why it is useful?
+A3: It organizes code across multiple files for better readability and maintenance, avoids naming conflicts, and simplifies code reuse.
