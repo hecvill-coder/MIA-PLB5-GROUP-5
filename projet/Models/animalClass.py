@@ -27,6 +27,9 @@ class Animal:
     def double_speed(self):
         self.speed *= 2
 
+    def obstacle_hit(self):
+            self.speed *= 0.5
+
     # Method to check the terrain color under the animal and adjust speed accordingly.
     def check_area(self, track):
         current_x = self.turtle.xcor()  # Get the current x-coordinate of the turtle.
@@ -48,7 +51,12 @@ class Dog(Animal):
 
     # Placeholder method to adjust speed based on the terrain color.
     def adjust_speed(self, color):
-        pass
+        if color == "light blue":  # Water terrain.
+            self.speed += 0
+        elif color == "light green":  # Forest terrain.
+            self.speed -= 0
+        else:  # Normal terrain.
+            self.speed = 1
 
 # The TurtleRacer class represents a turtle in the race.
 # It inherits from the Animal class and overrides the adjust_speed method.
@@ -77,5 +85,18 @@ class Monkey(Animal):
             self.speed += 0.5
         elif color == "light blue":  # Water terrain.
             self.speed -= 0.5
+        else:  # Normal terrain.
+            self.speed = 1
+
+class Pinguin(Animal):
+    def __init__(self, start_pos):
+        super().__init__("pinguin.gif", "blue", start_pos)  # Initialize with a monkey shape and orange color.
+
+    # Method to adjust the speed of the monkey based on the terrain color.
+    def adjust_speed(self, color):
+        if color == "light green":  # Forest terrain.
+            self.speed -= 0.25
+        elif color == "light blue":  # Water terrain.
+            self.speed += 1
         else:  # Normal terrain.
             self.speed = 1
